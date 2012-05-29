@@ -91,6 +91,7 @@ sub OnMouseDown {
             ? $self->arduino->LOW
             : $self->arduino->HIGH
     );
+    $event->Skip(1) if defined $event;
 }
 
 sub OnMouseUp {
@@ -101,6 +102,7 @@ sub OnMouseUp {
             ? $self->arduino->HIGH
             : $self->arduino->LOW
     );
+    $event->Skip(1) if defined $event;
 }
 
 no Moose;

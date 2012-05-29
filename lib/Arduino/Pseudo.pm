@@ -272,6 +272,7 @@ sub _loop {
     my($self) = @_;
     die "you did not define sub loop!" unless main::->can('loop');
     main::loop($self);
+    $self->_frame->Refresh();
 }
 
 =head1 ARDUINO METHODS
@@ -374,10 +375,12 @@ See L<http://arduino.cc/en/Reference/Delay>.
 sub delay {
     my($self, $value) = @_;
     my $end = $self->millis + $value;
+    $self->_timer->Stop();
     while($self->millis < $end) {
         $self->Dispatch() if $self->Pending();
         sleep 0.001;
     }
+    $self->_timer->Start( 1, 0);
 }
 
 =head2 tone $pin, $value, $length

@@ -91,7 +91,7 @@ sub BUILD {
     $self->SetWindowStyle(
         wxTE_READONLY | wxBORDER_SIMPLE,
     );
-    $self->SetBackgroundColour( $self->color_off );    
+    $self->SetBackgroundColour( $self->color_off );
 }
 
 =head1 METHODS
@@ -107,6 +107,8 @@ Turns the LED on.
 sub on {
     my($self) = @_;    
     $self->SetBackgroundColour( $self->color_on );
+    $self->Refresh();
+    $self->Update();
 }
 
 =head2 off
@@ -118,6 +120,8 @@ Turns the LED off.
 sub off {
     my($self) = @_;    
     $self->SetBackgroundColour( $self->color_off );
+    $self->Refresh();
+    $self->Update();
 }
 
 =head1 AUTHOR
